@@ -30,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
     int score2;
     int score3;
     int score4;
+    int testforgit;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
