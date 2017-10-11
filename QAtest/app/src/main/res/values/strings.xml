@@ -1,0 +1,38 @@
+<resources>
+    <string name="app_name">QA test</string>
+    <string name="question_singal1">單選題1</string>
+    <string name="question_singal2">單選題2</string>
+    <string name="question_mutipul">複選題</string>
+    <string name="question_wrtting">問答題</string>
+    <string name="answer_title">答案</string>
+    <string name="answer_itemA">A</string>
+    <string name="answer_itemB">B</string>
+    <string name="answer_itemC">C</string>
+    <string name="answer_itemD">D</string>
+    <string name="submit">提交</string>
+    <string name="clear">重來</string>
+    <string name="answer_feedback">正確答案</string>
+    <string name="question1_text">請問台灣最高的山是什麼山？</string>
+    <string name="question2_text">請問台灣首都是哪個城市？</string>
+    <string name="question3_text">請問以下哪幾個城市是直轄市？</string>
+    <string name="question4_text">請問台灣最大的潭叫什麼？</string>
+    <string name="hint">請在此處作答</string>
+
+    <string name="question1_A">A:玉山</string>
+    <string name="question1_B">B:合歡山</string>
+    <string name="question1_C">C:阿里山</string>
+    <string name="question1_D">D:大霸尖山</string>
+
+    <string name="question2_A">A:高雄</string>
+    <string name="question2_B">B:台南</string>
+    <string name="question2_C">C:台中</string>
+    <string name="question2_D">D:台北</string>
+
+    <string name="question3_A">A:高雄</string>
+    <string name="question3_B">B:嘉義</string>
+    <string name="question3_C">C:台中</string>
+    <string name="question3_D">D:台北</string>
+
+    <string name="Score">成績</string>
+
+</resources>
