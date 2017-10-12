@@ -8,6 +8,7 @@ import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
     RadioGroup answerGroup1;
@@ -30,7 +31,6 @@ public class MainActivity extends AppCompatActivity {
     int score2;
     int score3;
     int score4;
-    int testforgit;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,10 +56,11 @@ public class MainActivity extends AppCompatActivity {
 
     public void submit(View v) {
         boolean answer3ACheck = answer3A.isChecked();
+        boolean answer3BCheck = answer3B.isChecked();
         boolean answer3CCheck = answer3C.isChecked();
         boolean answer3DCheck = answer3D.isChecked();
-        int score = score1() + score2() + score3(answer3ACheck, answer3CCheck, answer3DCheck) + inputScore();
-        displayMessage(testSummary(score));
+        int score = score1() + score2() + score3(answer3ACheck, answer3BCheck, answer3CCheck, answer3DCheck) + inputScore();
+        displayToast(testSummary(score));
     }
 
     public void clear(View v) {
@@ -74,13 +75,15 @@ public class MainActivity extends AppCompatActivity {
         score2 = 0;
         score3 = 0;
         score4 = 0;
-        displayMessage(testSummary(0));
+        displayToast(testSummary(0));
     }
 
-    private int score3(boolean answer3a, boolean answer3c, boolean answer3d) {
-        if (answer3a && answer3c && answer3d) {
-            score3 = 1;
-        }
+    private int score3(boolean answer3a, boolean answer3b, boolean answer3c, boolean answer3d) {
+        if(answer3b){score3=0;}
+
+        else if (answer3a && answer3c && answer3d) {
+            score3 = 1;}
+
         return score3;
     }
 
@@ -112,13 +115,10 @@ public class MainActivity extends AppCompatActivity {
         if (answer4.equals(textAnswer)) {
             score4 = 1;
         }
+
         return score4;
     }
 
-    private void displayMessage(String message) {
-        TextView orderSummaryTextView = (TextView) findViewById(R.id.answer4output);
-        orderSummaryTextView.setText(message);
-    }
 
     private String testSummary(int score) {
         String summaryMessage;
@@ -126,4 +126,12 @@ public class MainActivity extends AppCompatActivity {
         summaryMessage += "\n歡迎再次挑戰!";
         return summaryMessage;
     }
+
+    public void displayToast(String string) {
+        Toast mtoast = Toast.makeText(this, string, Toast.LENGTH_LONG);
+        mtoast.show();
+    }
+
+
+
 }
