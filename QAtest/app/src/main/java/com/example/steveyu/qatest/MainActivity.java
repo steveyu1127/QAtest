@@ -1,5 +1,6 @@
 package com.example.steveyu.qatest;
 
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -55,11 +56,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void submit(View v) {
+        boolean answer1ACheck = answer1A.isChecked();
+        boolean answer2DCheck = answer2D.isChecked();
         boolean answer3ACheck = answer3A.isChecked();
         boolean answer3BCheck = answer3B.isChecked();
         boolean answer3CCheck = answer3C.isChecked();
         boolean answer3DCheck = answer3D.isChecked();
-        int score = score1() + score2() + score3(answer3ACheck, answer3BCheck, answer3CCheck, answer3DCheck) + inputScore();
+        int score = score1(answer1ACheck) + score2(answer2DCheck) + score3(answer3ACheck, answer3BCheck, answer3CCheck, answer3DCheck) + inputScore();
         displayToast(testSummary(score));
     }
 
@@ -79,51 +82,47 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private int score3(boolean answer3a, boolean answer3b, boolean answer3c, boolean answer3d) {
-        if(answer3b){score3=0;}
-
-        else if (answer3a && answer3c && answer3d) {
-            score3 = 1;}
-
+        if (answer3b) {
+            score3 = 0;
+        } else if (answer3a && answer3c && answer3d) {
+            score3 = 1;
+        }
         return score3;
     }
 
-    private int score2() {
-        answerGroup2.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            public void onCheckedChanged(RadioGroup group, int checkedId) {
-                if (checkedId == answer2D.getId()) {
-                    score2 = 1;
-                }
-            }
-        });
-        return score2;
+    private int score1(boolean answer1a) {
+        if (answer1a) {
+            score1 = 1;
+        } else {
+            score1 = 0;
+        }
+        return score1;
     }
 
-    private int score1() {
-        answerGroup1.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            public void onCheckedChanged(RadioGroup group, int checkedId) {
-                if (checkedId == answer1A.getId()) {
-                    score1 = 1;
-                }
-            }
-        });
+    private int score2(boolean answer2d) {
+        if (answer2d) {
+            score1 = 1;
+        } else {
+            score2 = 0;
+        }
         return score1;
     }
 
     private int inputScore() {
-        String textAnswer = "日月潭";
+        String textAnswer = getString(R.string.answer4_sunmoonlake);
         String answer4 = answer4input.getText().toString();
         if (answer4.equals(textAnswer)) {
             score4 = 1;
         }
-
         return score4;
     }
 
-
     private String testSummary(int score) {
+        Resources res = getResources();
+        String finalMessage = res.getString(R.string.final_score, score);
         String summaryMessage;
-        summaryMessage = "總答對題數: " + score + " !";
-        summaryMessage += "\n歡迎再次挑戰!";
+        summaryMessage = finalMessage;
+        summaryMessage += getString(R.string.welcone_challenge);
         return summaryMessage;
     }
 
@@ -131,7 +130,4 @@ public class MainActivity extends AppCompatActivity {
         Toast mtoast = Toast.makeText(this, string, Toast.LENGTH_LONG);
         mtoast.show();
     }
-
-
-
 }
